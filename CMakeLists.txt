@@ -11,13 +11,7 @@ if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
     add_executable(MyExecutable main.cpp)
     target_link_libraries(MyExecutable ${Boost_LIBRARIES})
-else()
-    message(FATAL_ERROR "Could not find Boost libraries!")
-endif()]]#
-
-# GSL library
-find_package(GSL REQUIRED)
-include_directories(${GSL_INCLUDE_DIRS})
+]]#
 
 add_executable(VEX_Path_Planner main.cpp
         Vector2.h
@@ -33,4 +27,9 @@ add_executable(VEX_Path_Planner main.cpp
         CircularArc.h
         Curves.h
         Fresnel.h
-        Fresnel.cpp)
+        Fresnel.cpp
+        Joint.cpp
+        Joint.h
+        BoundingBox.cpp
+        BoundingBox.h
+)

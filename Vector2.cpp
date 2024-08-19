@@ -4,7 +4,7 @@
 
 #include "Vector2.h"
 
-namespace math {
+namespace path {
     std::string Vector2::str() const {
         return "(" + std::to_string(x) + "  " + std::to_string(y) + ")";
     }

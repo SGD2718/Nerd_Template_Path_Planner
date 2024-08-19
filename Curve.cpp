@@ -4,7 +4,7 @@
 
 #include "Curve.h"
 
-namespace math {
+namespace path {
     Curve::Curve(bool visible) :
             visible(visible) {}
 

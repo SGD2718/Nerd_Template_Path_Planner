@@ -4,8 +4,8 @@
 
 #include "CircularArc.h"
 
-namespace math {
-    CircularArc::CircularArc(math::Vector2 center, double startAngle, double endAngle, double radius, bool visible):
+namespace path {
+    CircularArc::CircularArc(path::Vector2 center, double startAngle, double endAngle, double radius, bool visible):
             Curve(visible),
             center(center),
             thetaStart(startAngle),
@@ -49,7 +49,7 @@ namespace math {
         return this->radius;
     }
 
-    void CircularArc::set_center(math::Vector2 pos) {
+    void CircularArc::set_center(path::Vector2 pos) {
         this->center = pos;
     }
 
@@ -65,10 +65,10 @@ namespace math {
         this->radius = r;
     }
 
-    void CircularArc::configure(math::Vector2 center, double startAngle, double endAngle, double r) {
+    void CircularArc::configure(path::Vector2 center, double startAngle, double endAngle, double r) {
         this->center = center;
         this->thetaStart = startAngle;
         this->thetaEnd = endAngle;
         this->radius = r;
     }
-} // math
+} // path

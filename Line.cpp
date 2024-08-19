@@ -4,8 +4,8 @@
 
 #include "Line.h"
 
-namespace math {
-    Line::Line(math::Vector2 start, math::Vector2 end, bool visible):
+namespace path {
+    Line::Line(path::Vector2 start, path::Vector2 end, bool visible):
             Curve(visible),
             start(start),
             end(end)
@@ -36,16 +36,16 @@ namespace math {
         return this->end;
     }
 
-    void Line::set_start(math::Vector2 pos) {
+    void Line::set_start(path::Vector2 pos) {
         this->start = pos;
     }
 
-    void Line::set_end(math::Vector2 pos) {
+    void Line::set_end(path::Vector2 pos) {
         this->end = pos;
     }
 
-    void Line::configure(math::Vector2 a, math::Vector2 b) {
+    void Line::configure(path::Vector2 a, path::Vector2 b) {
         this->start = a;
         this->end = b;
     }
-} // math
+} // path

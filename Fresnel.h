@@ -10,9 +10,9 @@
 
 #pragma once
 
-#define FRESNEL_TABLE_SIZE 1000
+#define FRESNEL_TABLE_SIZE 5000
 
-namespace math {
+namespace path {
     extern Vector2 FRESNEL_TABLE[FRESNEL_TABLE_SIZE];
     extern void init_fresnel();
 }

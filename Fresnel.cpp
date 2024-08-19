@@ -4,7 +4,7 @@
 
 #include "Fresnel.h"
 
-namespace math {
+namespace path {
     Vector2 FRESNEL_TABLE[FRESNEL_TABLE_SIZE];
 
     void init_fresnel() {

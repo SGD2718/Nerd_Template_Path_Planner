@@ -8,7 +8,7 @@
 #include <cmath>
 #include <string>
 
-namespace math {
+namespace path {
     class Vector2 {
     public:
         double x;
@@ -118,6 +118,6 @@ namespace math {
     };
 
     Vector2 operator*(double a, Vector2 b);
-} // namespace math
+} // namespace path
 
 #endif //VEX_PATH_PLANNER_VECTOR2_H

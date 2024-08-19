@@ -7,7 +7,7 @@
 
 #include "Curve.h"
 
-namespace math {
+namespace path {
 
     class CircularArc: Curve {
     public:
@@ -51,6 +51,6 @@ namespace math {
         double radius;
     };
 
-} // math
+} // path
 
 #endif //VEX_PATH_PLANNER_CIRCULARARC_H

@@ -5,9 +5,9 @@
 #include "Clothoid.h"
 #include "Fresnel.h"
 
-namespace math {
+namespace path {
 
-    Clothoid::Clothoid(double length, math::Vector2 initialPosition, double initialHeading, double sharpness,
+    Clothoid::Clothoid(double length, path::Vector2 initialPosition, double initialHeading, double sharpness,
                        double initialCurvature, bool reversed, bool visible) :
             Curve(visible),
             s(length),
@@ -135,11 +135,11 @@ namespace math {
         this->sigma_2 = sharpness / 2;
     }
 
-    void Clothoid::set_initial_position(math::Vector2 position) {
+    void Clothoid::set_initial_position(path::Vector2 position) {
         this->p0 = position;
     }
 
-    void Clothoid::configure(double length, math::Vector2 initialPosition, double initialHeading, double sharpness,
+    void Clothoid::configure(double length, path::Vector2 initialPosition, double initialHeading, double sharpness,
                              double initialCurvature, bool reversed) {
         this->s = length;
         this->p0 = initialPosition;
@@ -148,4 +148,4 @@ namespace math {
         this->kappa0 = initialCurvature;
         this->reversed = reversed;
     }
-} // namespace math
+} // namespace path

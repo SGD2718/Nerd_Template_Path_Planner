@@ -7,7 +7,7 @@
 
 #include "Curve.h"
 
-namespace math {
+namespace path {
 
     class Line: Curve {
     public:
@@ -24,13 +24,13 @@ namespace math {
          * @param numWaypoints number of waypoints
          * @return list of waypoints
          */
-        [[nodiscard]] std::vector<math::Vector2> get_waypoints(int numWaypoints) const override;
+        [[nodiscard]] std::vector<path::Vector2> get_waypoints(int numWaypoints) const override;
 
         /**
          * @param ds step size
          * @return list of waypoints
          */
-        [[nodiscard]] std::vector<math::Vector2> get_waypoints_spaced(double ds) const override;
+        [[nodiscard]] std::vector<path::Vector2> get_waypoints_spaced(double ds) const override;
 
         [[nodiscard]] Vector2 get_start() const;
         [[nodiscard]] Vector2 get_end() const;
@@ -43,6 +43,6 @@ namespace math {
         Vector2 end;
     };
 
-} // math
+} // path
 
 #endif //VEX_PATH_PLANNER_LINE_H

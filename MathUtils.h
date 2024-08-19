@@ -10,7 +10,7 @@
 #include "Vector2.h"
 #include <iostream>
 
-namespace math {
+namespace path {
     /**
      * @brief approximate integral using Simpson's Rule.
      * @tparam I input type, also used for integration bounds
@@ -121,7 +121,8 @@ namespace math {
      * @param t time parameter
      * @return interpolation of a and b at time t.
      */
-    template <typename I, typename O=I> O lerp(O a, O b, I t) {
+    template <typename I, typename O=I>
+    O lerp(O a, O b, I t) {
         return a + (b-a) * t;
     }
 
@@ -135,7 +136,8 @@ namespace math {
      * @param dx step size
      * @return function output on the interval
      */
-    template <typename I, typename O = I> std::vector<O> map_interval_spaced(std::function<O(I)> f, I a, I b, I dx) {
+    template <typename I, typename O = I>
+    std::vector<O> map_interval_spaced(std::function<O(I)> f, I a, I b, I dx) {
         if (b < a)
             dx = -dx;
 
@@ -164,7 +166,8 @@ namespace math {
      * @param steps number of points evaluated
      * @return function output on the interval
      */
-    template <typename I, typename O = I> std::vector<O> map_interval(std::function<O(I)> f, I a, I b, int steps) {
+    template <typename I, typename O = I>
+    std::vector<O> map_interval(std::function<O(I)> f, I a, I b, int steps) {
         std::vector<O> res;
         res.reserve(steps);
         I dx = (b - a) / (steps - 1);
@@ -175,6 +178,6 @@ namespace math {
         return res;
     }
 
-} // math
+} // path
 
 #endif //VEX_PATH_PLANNER_MATHUTILS_H

@@ -9,7 +9,7 @@
 #include "MathUtils.h"
 #include "Curve.h"
 
-namespace math {
+namespace path {
     /**
      * @brief represents a clothoid.
      */
@@ -39,13 +39,13 @@ namespace math {
          * @param numWaypoints number of waypoints
          * @return list of waypoints
          */
-        [[nodiscard]] std::vector<math::Vector2> get_waypoints(int numWaypoints) const override;
+        [[nodiscard]] std::vector<path::Vector2> get_waypoints(int numWaypoints) const override;
 
         /**
          * @param ds step size
          * @return list of waypoints
          */
-        [[nodiscard]] std::vector<math::Vector2> get_waypoints_spaced(double ds) const override;
+        [[nodiscard]] std::vector<path::Vector2> get_waypoints_spaced(double ds) const override;
 
         [[nodiscard]] double get_length() const;
         [[nodiscard]] double get_sharpness() const;
