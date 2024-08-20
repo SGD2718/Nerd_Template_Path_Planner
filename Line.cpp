@@ -15,15 +15,15 @@ namespace path {
         return start + (end - start).normalize() * s;
     }
 
-    std::vector<Vector2> Line::get_waypoints(int numWaypoints) const {
-        return map_interval<double, Vector2>([this](double s) -> Vector2 {
+    void Line::get_waypoints(std::vector<path::Vector2>& output, int numWaypoints) const {
+        map_interval<double, Vector2>(output, [this](double s) -> Vector2 {
             return lerp<double, Vector2>(this->start, this->end, s);
         }, 0, 1, numWaypoints);
     }
 
-    std::vector<Vector2> Line::get_waypoints_spaced(double ds) const {
+    void Line::get_waypoints_spaced(std::vector<path::Vector2>& output, double ds) const {
         auto unitVec = (end - start).normalize();
-        return map_interval_spaced<double, Vector2>([this, unitVec](double s) -> Vector2 {
+        map_interval_spaced<double, Vector2>(output, [this, unitVec](double s) -> Vector2 {
             return this->start + unitVec * s;
         }, 0, (this->end - this->start).norm(), ds);
     }
@@ -34,6 +34,10 @@ namespace path {
 
     Vector2 Line::get_end() const {
         return this->end;
+    }
+
+    double Line::get_length() const {
+        return (this->end - this->start).norm();
     }
 
     void Line::set_start(path::Vector2 pos) {

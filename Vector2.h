@@ -89,6 +89,13 @@ namespace path {
         [[nodiscard]] double angle(Vector2 other) const;
 
         /**
+         * @brief Get oriented/signed angle from this vector to another vector.
+         * @param other another vector
+         * @return angle from this vector to the other vector.
+         */
+        [[nodiscard]] double oriented_angle(Vector2 other) const;
+
+        /**
          * @brief get vector heading in radians
          * @return vector heading in radians
          */

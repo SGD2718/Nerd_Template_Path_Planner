@@ -8,8 +8,6 @@
 #include "Vector2.h"
 
 namespace path {
-
-
     class BoundingBox {
     public:
         BoundingBox(const Vector2 &cornerMin, const Vector2 &cornerMax);

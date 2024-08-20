@@ -3,6 +3,7 @@
 //
 
 #include "Vector2.h"
+#include "MathUtils.h"
 
 namespace path {
     std::string Vector2::str() const {
@@ -53,6 +54,10 @@ namespace path {
 
     double Vector2::angle(Vector2 other) const {
         return acos(this->dot(other) / (this->norm() * other.norm()));
+    }
+
+    double Vector2::oriented_angle(Vector2 other) const {
+        return this->angle(other) * sign<double>(this->cross(other));
     }
 
     double Vector2::heading() const {

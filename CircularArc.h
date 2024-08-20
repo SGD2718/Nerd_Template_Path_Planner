@@ -9,9 +9,9 @@
 
 namespace path {
 
-    class CircularArc: Curve {
+    class CircularArc: public Curve {
     public:
-        CircularArc(Vector2 center, double startAngle, double endAngle, double radius, bool visible = true);
+        explicit CircularArc(Vector2 center = {0, 0}, double startAngle = 0, double endAngle = M_PI * 2, double radius = 1, bool visible = true);
 
         /**
          * @brief get point on arc
@@ -25,14 +25,16 @@ namespace path {
          * @param numWaypoints number of waypoints
          * @return list of waypoints
          */
-        [[nodiscard]] std::vector<Vector2> get_waypoints(int numWaypoints) const override;
+        void get_waypoints(std::vector<path::Vector2>& output, int numWaypoints) const override;
 
         /**
          * @brief generated waypoints with set spacing
          * @param ds space between waypoints
          * @return list of waypoints
          */
-        [[nodiscard]] std::vector<Vector2> get_waypoints_spaced(double ds) const override;
+        void get_waypoints_spaced(std::vector<path::Vector2>& output, double ds) const override;
+
+        [[nodiscard]] double get_length() const override;
 
         [[nodiscard]] Vector2 get_center() const;
         [[nodiscard]] double get_start_angle() const;

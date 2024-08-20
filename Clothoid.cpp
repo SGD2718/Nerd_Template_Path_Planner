@@ -7,7 +7,7 @@
 
 namespace path {
 
-    Clothoid::Clothoid(double length, path::Vector2 initialPosition, double initialHeading, double sharpness,
+    Clothoid::Clothoid(path::Vector2 initialPosition, double initialHeading, double length, double sharpness,
                        double initialCurvature, bool reversed, bool visible) :
             Curve(visible),
             s(length),
@@ -41,13 +41,12 @@ namespace path {
                     }, 0, this->s, std::max((int)(this->s * 10), 10));
     }
 
-    std::vector<Vector2>
-    Clothoid::get_waypoints(int numWaypoints) const {
-        std::vector<Vector2> res;
-
+    void Clothoid::get_waypoints(std::vector<path::Vector2>& output, int numWaypoints) const {
+        auto sz = (long)output.size();
         if (kappa0 == 0) {
             // a slight optimization
-            res = moving_integral<double, Vector2>(
+            moving_integral<double, Vector2>(
+                    output,
                     [this](double x) -> Vector2 {
                         return {
                                 std::cos(this->sigma_2 * x * x + this->theta0),
@@ -55,7 +54,8 @@ namespace path {
                         };
                     }, 0, this->s, numWaypoints, this->p0);
         } else {
-            res = moving_integral<double, Vector2>(
+            moving_integral<double, Vector2>(
+                    output,
                     [this](double x) -> Vector2 {
                         return {
                                 std::cos(this->sigma_2 * x * x + this->kappa0 * x + this->theta0),
@@ -65,18 +65,17 @@ namespace path {
         }
 
         if (this->reversed)
-            std::reverse(res.begin(), res.end());
-
-        return res;
+            std::reverse(output.begin() + sz, output.end());
     }
 
-    std::vector<Vector2>
-    Clothoid::get_waypoints_spaced(double ds) const {
-        std::vector<Vector2> res;
+    void
+    Clothoid::get_waypoints_spaced(std::vector<Vector2>& output, double ds) const {
+        auto sz = (long)output.size();
 
         if (kappa0 == 0) {
             // a slight optimization
-            res = moving_integral_spaced<double, Vector2>(
+            moving_integral_spaced<double, Vector2>(
+                    output,
                     [this](double x) -> Vector2 {
                         return {
                                 std::cos(this->sigma_2 * x * x + this->theta0),
@@ -84,7 +83,8 @@ namespace path {
                         };
                     }, 0, this->s, ds, this->p0);
         } else {
-            res = moving_integral_spaced<double, Vector2>(
+            moving_integral_spaced<double, Vector2>(
+                    output,
                     [this](double x) -> Vector2 {
                         return {
                                 std::cos(this->sigma_2 * x * x + this->kappa0 * x + this->theta0),
@@ -94,9 +94,7 @@ namespace path {
         }
 
         if (this->reversed)
-            std::reverse(res.begin(), res.end());
-
-        return res;
+            std::reverse(output.begin() + sz, output.end());
     }
 
     double Clothoid::get_initial_curvature() const {
@@ -139,7 +137,7 @@ namespace path {
         this->p0 = position;
     }
 
-    void Clothoid::configure(double length, path::Vector2 initialPosition, double initialHeading, double sharpness,
+    void Clothoid::configure(path::Vector2 initialPosition, double initialHeading, double length, double sharpness,
                              double initialCurvature, bool reversed) {
         this->s = length;
         this->p0 = initialPosition;

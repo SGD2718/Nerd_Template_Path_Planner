@@ -15,5 +15,8 @@
 namespace path {
     extern Vector2 FRESNEL_TABLE[FRESNEL_TABLE_SIZE];
     extern void init_fresnel();
+    extern double fresnel_C(double s);
+    extern double fresnel_S(double s);
+    extern Vector2 fresnel_vec(double s);
 }
 #endif //VEX_PATH_PLANNER_FRESNEL_H

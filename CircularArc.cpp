@@ -21,14 +21,14 @@ namespace path {
         return {this->radius * cos(s), this->radius * sin(s)};
     }
 
-    std::vector<Vector2> CircularArc::get_waypoints(int numWaypoints) const {
-        return map_interval<double, Vector2>([this](double t) -> Vector2 {
+    void CircularArc::get_waypoints(std::vector<path::Vector2>& output, int numWaypoints) const {
+        map_interval<double, Vector2>(output, [this](double t) -> Vector2 {
             return Vector2(cos(t), sin(t)) * this->radius + this->center;
         }, this->thetaStart, this->thetaEnd, numWaypoints);
     }
 
-    std::vector<Vector2> CircularArc::get_waypoints_spaced(double ds) const {
-        return map_interval_spaced<double, Vector2>([this](double t) -> Vector2 {
+    void CircularArc::get_waypoints_spaced(std::vector<path::Vector2>& output, double ds) const {
+        map_interval_spaced<double, Vector2>(output, [this](double t) -> Vector2 {
             return Vector2(cos(t), sin(t)) * this->radius + this->center;
         }, this->thetaStart, this->thetaEnd, ds / this->radius);
     }
@@ -47,6 +47,12 @@ namespace path {
 
     double CircularArc::get_radius() const {
         return this->radius;
+    }
+
+    double CircularArc::get_length() const {
+        if (this->is_visible())
+            return std::fabs(this->radius * (this->thetaEnd - this->thetaStart));
+        return 0;
     }
 
     void CircularArc::set_center(path::Vector2 pos) {
